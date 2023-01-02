@@ -16,6 +16,14 @@ const Schema = new mongoose.Schema({
     cat: {
         type: String,
         required: false,
+    },
+    like: {
+        type: Number,
+        required: false,
+    },
+    views: {
+        type: Number,
+        required: false
     }
 }, { timestamps: true })
 

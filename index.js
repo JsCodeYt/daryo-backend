@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv")
 const postRouter = require("./router/Post")
+const userRouter = require("./router/User")
 const multer = require("multer")
 const path = require("path")
 
@@ -22,6 +23,9 @@ const upload = multer({ storage })
 const app = express()
 dotenv.config()
 
+// static
+app.use(express.static(path.join(__dirname, "images")))
+
 
 // middlewares
 app.use(cors({ origin: "*" }))
@@ -29,8 +33,9 @@ app.use(express.json())
 
 
 // routes
-app.get("/", (req, res) => {res.status(200).json({message: "Backend is running !"})})
+app.get("/", (req, res) => { res.status(200).json({ message: "Backend is running !" }) })
 app.use("/api/post", postRouter)
+app.use("/api/user", userRouter)
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.send("file uploaded")
 })
