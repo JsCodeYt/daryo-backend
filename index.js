@@ -29,7 +29,7 @@ app.use(express.json())
 
 
 // routes
-app.get("/", (req, res => {res.status(200).json({message: "Backend is running !"})}))
+app.get("/", (req, res) => {res.status(200).json({message: "Backend is running !"})})
 app.use("/api/post", postRouter)
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.send("file uploaded")
