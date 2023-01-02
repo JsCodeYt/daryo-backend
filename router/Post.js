@@ -6,7 +6,7 @@ router.post("/", async (req, res) => {
         const newPost = await postModel.create({ ...req.body })
         return res.status(201).json(newPost)
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error + "error post")
     }
 })
 
