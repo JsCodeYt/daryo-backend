@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
             const posts = await postModel.find({ cat: catorie })
             return res.status(200).json(posts)
         } else {
-            const posts = await postModel.find().limit(req.params.page)
+            const posts = await postModel.find().limit(req.query.page || 10)
             return res.status(200).json(posts)
         }
     } catch (error) {
