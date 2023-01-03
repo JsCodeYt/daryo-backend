@@ -53,17 +53,33 @@ const view_post = async (req, res) => {
         const updateViewers = await postModel.findByIdAndUpdate(req.params.id, {
             views: post.views + 1
         }, { new: true })
-        res.status(200).json(updatePost)
+        res.status(200).json(updateViewers)
     } catch (error) {
         res.status(500).json(error)
     }
 }
 
+const add_comment = async (req, res) => {
+    try {
+        const post = await postModel.findById(req.params.id)
+        const updateComment = await postModel.findByIdAndUpdate(post._id, {
+            comments: [
+                { author: req.body.author, comment: req.body.comment },
+                ...post.comments
+            ]
+        }, { new: true })
+
+        res.status(200).json(updateComment)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
 
 module.exports = {
     create_post,
     get_post,
     sort_post,
     like_post,
-    view_post
+    view_post,
+    add_comment
 }

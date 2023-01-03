@@ -20,10 +20,17 @@ const Schema = new mongoose.Schema({
     like: {
         type: Number,
         required: false,
+        default: 0,
     },
     views: {
         type: Number,
-        required: false
+        required: false,
+        default: 0
+    },
+    comments: {
+        type: Array,
+        required: false,
+        default: []
     }
 }, { timestamps: true })
 
