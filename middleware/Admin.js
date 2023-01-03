@@ -17,7 +17,10 @@ const admin = async (req, res, next) => {
             }
             const authorToken = await jwt.sign({ ...authorObject }, "secret")
             res.status(200).json({
-                token: authorToken
+                user: {
+                isAdmin: true
+                },
+                token:authorToken,
             })
         } {
         }
